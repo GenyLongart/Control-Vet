@@ -1,25 +1,47 @@
-const Patient = () => {
+const Patient = ({patient, setPatient, deletingPatient}) => {
+
+  const { name, owner, email, date, symptoms, id } = patient;
+
+  const handleDeleting = () => {
+    const response = (confirm('¿Deseas eliminar este paciente?'))
+
+    if (response){
+      deletingPatient(id)
+    }
+  }
+
   return (
-    <div className='m-3 bg-white shadow-md px-5 py-10 rounded-xl'>
+    <div className='mx-5 my-10 bg-white shadow-md px-5 py-10 rounded-xl'>
 
           <p className='font-bold mb-3 text-gray-700 uppercase'>
-            Nombre: {''} <span className='font-normal normal-case'>Hook</span>
+            Nombre: {''} <span className='font-normal normal-case'>{name}</span>
           </p>
           <p className='font-bold mb-3 text-gray-700 uppercase'>
-            Propietario: {''} <span className='font-normal normal-case'>Gene</span>
+            Propietario: {''} <span className='font-normal normal-case'>{owner}</span>
           </p>
           <p className='font-bold mb-3 text-gray-700 uppercase'>
-            Email: {''} <span className='font-normal normal-case'>correo@correo.com</span>
+            Email: {''} <span className='font-normal normal-case'>{email}</span>
           </p>
           <p className='font-bold mb-3 text-gray-700 uppercase'>
-            Fecha Alta: {''} <span className='font-normal normal-case'>10 Diciembre de 2020</span>
+            Fecha Alta: {''} <span className='font-normal normal-case'>{date}</span>
           </p>
           <p className='font-bold mb-3 text-gray-700 uppercase'>
-            Síntomas: {''} <span className='font-normal normal-case'>Lorem ipsum dolor sit amet, 
-            consectetur adipisicing elit. Rem modi commodi ex necessitatibus vitae qui, 
-            consequuntur officiis id sint quis, nobis vel provident voluptatibus beatae fuga 
-            tempore minus repellat maiores.</span>
+            Síntomas: {''} <span className='font-normal normal-case'>{symptoms}</span>
           </p>
+
+          <div className="flex justify-between mt-10">
+            <button
+              type = 'button'
+              onClick={() => setPatient(patient)}
+              className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg"
+            >Editar</button>
+
+            <button
+              type = 'button'
+              onClick={handleDeleting}
+              className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-lg"
+            >Eliminar</button>
+          </div>
 
         </div>
   )
